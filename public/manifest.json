@@ -4,11 +4,12 @@
   "description": "Моё первое расширение для браузераы",
   "version": "0.0.1",
   "action": {
-    "default_popup": "src/popup/index.html"
+    "default_popup": "popup.html"
   },
   "background": {
-    "service_worker": "src/background/background.js",
+    "service_worker": "background.js",
     "type": "module"
   },
-  "permissions": ["storage", "activeTab"]
+  "permissions": ["storage", "activeTab", "scripting"],
+  "host_permissions": ["<all_urls>"]
 }
