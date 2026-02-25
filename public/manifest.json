@@ -4,7 +4,11 @@
   "description": "Моё первое расширение для браузераы",
   "version": "0.0.1",
   "action": {
-    "default_popup": "popup.html"
+    "default_popup": "popup.html",
+    "default_icon": {
+      "32": "images/acorn-fill_32.png"    // 16 24 optional
+    },
+    "default_title": "Ohh my first extension!"
   },
   "background": {
     "service_worker": "background.js",
