@@ -1,0 +1,11 @@
+{
+    "extensionDescription": {
+        "message": "Automatically generate TypeScript interfaces from DevTools network requests."
+    },
+    "recordingOn": {
+        "message": "Recording: ON"
+    },
+    "recordingOff": {
+        "message": "Recording: OFF"
+    }
+}

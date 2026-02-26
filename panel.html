@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>TypeFastDTO Panel</title>
+</head>
+
+<body>
+    <div id="sidebar">
+        <div class="toolbar">
+            <button id="toggle-record-btn">Start Recording</button>
+            <span id="recording-indicator" class="status-indicator"></span>
+            <button id="clear-btn" class="secondary">Clear</button>
+        </div>
+        <div id="request-list"></div>
+    </div>
+    <div id="main-content">
+        <div class="code-header">
+            <span>TypeScript Interface Preview</span>
+            <button id="copy-btn">Copy to Clipboard</button>
+        </div>
+        <pre id="code-preview">// Select a request to see TS interface</pre>
+    </div>
+    <script type="module" src="/src/panel/main.ts"></script>
+</body>
+
+</html>

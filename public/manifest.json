@@ -1,19 +1,31 @@
 {
   "manifest_version": 3,
-  "name": "TS Extension Starter",
-  "description": "Моё первое расширение для браузераы",
-  "version": "0.0.1",
+  "name": "TypeFastDTO",
+  "description": "__MSG_extensionDescription__",
+  "version": "1.0.0",
+  "default_locale": "ru",
   "action": {
     "default_popup": "popup.html",
     "default_icon": {
-      "32": "images/acorn-fill_32.png"    // 16 24 optional
-    },
-    "default_title": "Ohh my first extension!"
+      "32": "images/acorn-fill_32.png"
+    }
   },
   "background": {
     "service_worker": "background.js",
     "type": "module"
   },
-  "permissions": ["storage", "activeTab", "scripting"],
-  "host_permissions": ["<all_urls>"]
+  "permissions": [
+    "storage",
+    "activeTab",
+    "scripting"
+  ],
+  "optional_permissions": [
+    "webRequest"
+  ],
+  "host_permissions": [
+    "http://localhost/*",
+    "http://127.0.0.1/*"
+  ],
+  "devtools_page": "devtools.html",
+  "incognito": "split"
 }

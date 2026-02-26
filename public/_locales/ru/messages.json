@@ -1,0 +1,11 @@
+{
+    "extensionDescription": {
+        "message": "Автоматическая генерация TypeScript интерфейсов из запросов сетевой панели DevTools."
+    },
+    "recordingOn": {
+        "message": "Запись: ВКЛ"
+    },
+    "recordingOff": {
+        "message": "Запись: ВЫКЛ"
+    }
+}

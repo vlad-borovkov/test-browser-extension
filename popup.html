@@ -1,12 +1,22 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
+
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My First Extension</title>
+    <title>TypeFastDTO</title>
 </head>
+
 <body>
-<button id="changeColor">Click Me</button>
-<script type="module" src="./src/popup/main.ts"></script>
+    <h2>TypeFastDTO</h2>
+    <p class="description">Automatic TS interface generation from API responses.</p>
+
+    <div class="status-box">
+        <span id="status">Recording: OFF</span>
+    </div>
+
+    <button id="toggleRecording">Start Recording</button>
+
+    <script type="module" src="/src/popup/main.ts"></script>
 </body>
+
 </html>

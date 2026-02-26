@@ -1,17 +1,25 @@
-const btn = document.getElementById('changeColor') as HTMLButtonElement;
+import './style.css';
 
-btn.addEventListener('click', async () => {
-    console.log('clicked');
-    const [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
+const statusEl = document.getElementById('status')!;
+const toggleBtn = document.getElementById('toggleRecording') as HTMLButtonElement;
 
-    if (tab.id && tab.url && !tab.url.startsWith('chrome://')) {
-        await chrome.scripting.executeScript({
-            target: {tabId: tab.id},
-            func: () => {
-                document.body.style.backgroundColor = 'orange';
-            }
+async function updateUI() {
+    chrome.runtime.sendMessage({ type: 'GET_RECORDING_STATUS' }, (response) => {
+        const isRecording = response?.isRecording || false;
+        statusEl.textContent = isRecording ? chrome.i18n.getMessage('recordingOn') : chrome.i18n.getMessage('recordingOff');
+        statusEl.className = isRecording ? 'status-on' : 'status-off';
+        toggleBtn.textContent = isRecording ? 'Stop Recording' : 'Start Recording';
+    });
+}
+
+toggleBtn.addEventListener('click', () => {
+    chrome.runtime.sendMessage({ type: 'GET_RECORDING_STATUS' }, (response) => {
+        const nextStatus = !response?.isRecording;
+        chrome.runtime.sendMessage({ type: 'SET_RECORDING_STATUS', status: nextStatus }, () => {
+            updateUI();
         });
-    } else if (tab.url?.startsWith('chrome://')) {
-        console.warn('Cannot inject scripts into chrome:// pages.');
-    }
+    });
 });
+
+// Initial UI load
+updateUI();

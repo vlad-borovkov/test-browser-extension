@@ -11,6 +11,9 @@ export default defineConfig({
                 popup: resolve(__dirname, 'popup.html'),
                 background: resolve(__dirname, 'src/background/main.ts'),
                 content: resolve(__dirname, 'src/content/main.ts'),
+                panel: resolve(__dirname, 'panel.html'),
+                devtools: resolve(__dirname, 'devtools.html'),
+                options: resolve(__dirname, 'options.html'),
             },
             output: {
                 // Убираем хеши из имен файлов, чтобы manifest.json всегда ссылался на правильные пути
