@@ -77,7 +77,7 @@ export class InterfaceGenerator {
 
         for (const [key, value] of entries) {
             const fieldType = this.processValue(value, key);
-            content += `  ${key}: ${fieldType};\n`;
+            content += `  ${key}: ${fieldType}\n`;
         }
 
         content += `}`;

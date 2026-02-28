@@ -1,6 +1,10 @@
 import './style.css';
 import { generateDTO } from '../core/generator';
-import { StorageManager } from '../storage';
+import { StorageManager, AppSettings } from '../storage';
+import hljs from 'highlight.js/lib/core';
+import typescript from 'highlight.js/lib/languages/typescript';
+
+hljs.registerLanguage('typescript', typescript);
 
 const requestListEl = document.getElementById('request-list')!;
 const codePreviewEl = document.getElementById('code-preview')!;
@@ -23,7 +27,13 @@ async function init() {
             isRecording = !!changes.isRecording.newValue;
             updateRecordingUI();
         }
+        if (changes.settings) {
+            updateTheme((changes.settings.newValue as AppSettings).theme);
+        }
     });
+
+    const settings = await StorageManager.getSettings();
+    updateTheme(settings.theme);
 
     toggleRecordBtn.onclick = () => {
         const nextStatus = !isRecording;
@@ -39,6 +49,11 @@ async function init() {
 function updateRecordingUI() {
     recordingIndicatorEl.className = isRecording ? 'status-indicator status-recording' : 'status-indicator';
     toggleRecordBtn.textContent = isRecording ? 'Stop Recording' : 'Start Recording';
+}
+
+function updateTheme(theme: 'light' | 'dark') {
+    document.body.classList.remove('theme-light', 'theme-dark');
+    document.body.classList.add(`theme-${theme}`);
 }
 
 function handleRequest(request: any) {
@@ -82,7 +97,10 @@ async function selectRequest(item: any, element: HTMLElement) {
             const json = JSON.parse(content);
             const settings = await StorageManager.getSettings();
             const tsCode = generateDTO(json, 'Response', settings);
+
+            // Apply highlighting
             codePreviewEl.textContent = tsCode;
+            hljs.highlightElement(codePreviewEl as HTMLElement);
         } catch (e) {
             codePreviewEl.textContent = '// Failed to parse JSON body';
         }
