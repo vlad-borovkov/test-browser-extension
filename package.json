@@ -13,8 +13,5 @@
     "typescript": "^5.9.3",
     "vite": "latest"
   },
-  "private": true,
-  "dependencies": {
-    "highlight.js": "^11.11.1"
-  }
+  "private": true
 }

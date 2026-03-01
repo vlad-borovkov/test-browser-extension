@@ -1,27 +1,16 @@
 :root {
-    --bg-main: #ffffff;
-    --bg-side: #f6f8fa;
-    --border: #d0d7de;
-    --text: #24292e;
-    --accent: #0969da;
-    --hover: #f3f4f6;
-    --pre-bg: #ffffff;
-}
-
-body.theme-dark {
-    --bg-main: #0d1117;
-    --bg-side: #161b22;
-    --border: #30363d;
-    --text: #c9d1d9;
-    --accent: #1f6feb;
-    --hover: #21262d;
-    --pre-bg: #0d1117;
+    --bg-main: #1e1e1e;
+    --bg-side: #252526;
+    --border: #333333;
+    --text: #cccccc;
+    --accent: #007acc;
+    --hover: #2a2d2e;
 }
 
 body {
     background-color: var(--bg-main);
     color: var(--text);
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     margin: 0;
     display: flex;
     height: 100vh;
@@ -88,85 +77,28 @@ pre {
     margin: 0;
     padding: 16px;
     overflow: auto;
-    font-family: 'ui-monospace', 'SFMono-Regular', 'SF Mono', 'Consolas', 'Liberation Mono', monospace;
+    font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
     font-size: 13px;
     line-height: 1.5;
-    background: var(--pre-bg);
-    color: var(--text);
-}
-
-/* Scoped highlight.js themes */
-.theme-light .hljs-keyword,
-.theme-light .hljs-operator,
-.theme-light .hljs-type {
-    color: #d73a49;
-}
-
-.theme-light .hljs-title,
-.theme-light .hljs-title.function_,
-.theme-light .hljs-title.class_ {
-    color: #6f42c1;
-}
-
-.theme-light .hljs-attr,
-.theme-light .hljs-number,
-.theme-light .hljs-variable {
-    color: #005cc5;
-}
-
-.theme-light .hljs-string {
-    color: #032f62;
-}
-
-.theme-light .hljs-comment {
-    color: #6a737d;
-}
-
-.theme-dark .hljs-keyword,
-.theme-dark .hljs-operator,
-.theme-dark .hljs-type {
-    color: #ff7b72;
-}
-
-.theme-dark .hljs-title,
-.theme-dark .hljs-title.function_,
-.theme-dark .hljs-title.class_ {
-    color: #d2a8ff;
-}
-
-.theme-dark .hljs-attr,
-.theme-dark .hljs-number,
-.theme-dark .hljs-variable {
-    color: #79c0ff;
-}
-
-.theme-dark .hljs-string {
-    color: #a5d6ff;
-}
-
-.theme-dark .hljs-comment {
-    color: #8b949e;
+    background: #1e1e1e;
 }
 
 button {
     background: var(--accent);
     color: white;
-    border: 1px solid rgba(27, 31, 36, 0.15);
+    border: none;
     padding: 4px 12px;
-    border-radius: 6px;
+    border-radius: 2px;
     cursor: pointer;
     font-size: 12px;
-    font-weight: 500;
 }
 
 button:hover {
-    filter: brightness(0.95);
+    opacity: 0.9;
 }
 
 button.secondary {
-    background: var(--bg-side);
-    color: var(--text);
-    border: 1px solid var(--border);
+    background: #444;
 }
 
 .status-indicator {
@@ -175,11 +107,10 @@ button.secondary {
     height: 8px;
     border-radius: 50%;
     margin-right: 4px;
-    background: #afb8c1;
 }
 
 .status-recording {
-    background: #cf222e;
+    background: #f87171;
     animation: blink 1s infinite;
 }
 
