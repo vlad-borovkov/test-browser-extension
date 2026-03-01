@@ -1,6 +1,6 @@
 import './style.css';
 import { generateDTO } from '../core/generator';
-import { StorageManager } from '../storage';
+import { StorageManager, AppSettings } from '../storage';
 
 const requestListEl = document.getElementById('request-list')!;
 const codePreviewEl = document.getElementById('code-preview')!;
@@ -23,7 +23,13 @@ async function init() {
             isRecording = !!changes.isRecording.newValue;
             updateRecordingUI();
         }
+        if (changes.settings) {
+            updateTheme((changes.settings.newValue as AppSettings).theme);
+        }
     });
+
+    const settings = await StorageManager.getSettings();
+    updateTheme(settings.theme);
 
     toggleRecordBtn.onclick = () => {
         const nextStatus = !isRecording;
@@ -40,6 +46,26 @@ function updateRecordingUI() {
     recordingIndicatorEl.className = isRecording ? 'status-indicator status-recording' : 'status-indicator';
     toggleRecordBtn.textContent = isRecording ? 'Stop Recording' : 'Start Recording';
 }
+
+function updateTheme(theme: 'light' | 'dark' | 'auto') {
+    let actualTheme: 'light' | 'dark';
+    if (theme === 'auto') {
+        const isDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        actualTheme = isDark ? 'dark' : 'light';
+    } else {
+        actualTheme = theme;
+    }
+    document.body.classList.remove('theme-light', 'theme-dark');
+    document.body.classList.add(`theme-${actualTheme}`);
+}
+
+// System theme listener
+window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', async () => {
+    const settings = await StorageManager.getSettings();
+    if (settings.theme === 'auto') {
+        updateTheme('auto');
+    }
+});
 
 function handleRequest(request: any) {
     if (!isRecording) return;
@@ -82,6 +108,8 @@ async function selectRequest(item: any, element: HTMLElement) {
             const json = JSON.parse(content);
             const settings = await StorageManager.getSettings();
             const tsCode = generateDTO(json, 'Response', settings);
+
+            // Apply code to preview
             codePreviewEl.textContent = tsCode;
         } catch (e) {
             codePreviewEl.textContent = '// Failed to parse JSON body';

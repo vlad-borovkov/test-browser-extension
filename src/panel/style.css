@@ -1,20 +1,34 @@
 :root {
-    --bg-main: #1e1e1e;
-    --bg-side: #252526;
-    --border: #333333;
-    --text: #cccccc;
-    --accent: #007acc;
-    --hover: #2a2d2e;
+    --bg-main: #ffffff;
+    --bg-side: #f8fafc;
+    --border: #e2e8f0;
+    --text: #1e293b;
+    --muted: #64748b;
+    --accent: #38bdf8;
+    --hover: #f1f5f9;
+    --pre-bg: #ffffff;
+}
+
+body.theme-dark {
+    --bg-main: #0f172a;
+    --bg-side: #1e293b;
+    --border: #334155;
+    --text: #f8fafc;
+    --muted: #94a3b8;
+    --accent: #38bdf8;
+    --hover: #21262d;
+    --pre-bg: #0f172a;
 }
 
 body {
     background-color: var(--bg-main);
     color: var(--text);
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
     margin: 0;
     display: flex;
     height: 100vh;
     overflow: hidden;
+    transition: background-color 0.2s, color 0.2s;
 }
 
 #sidebar {
@@ -26,7 +40,7 @@ body {
 }
 
 .toolbar {
-    padding: 8px;
+    padding: 12px;
     border-bottom: 1px solid var(--border);
     display: flex;
     gap: 8px;
@@ -39,13 +53,15 @@ body {
 }
 
 .request-item {
-    padding: 8px 12px;
+    padding: 10px 16px;
     border-bottom: 1px solid var(--border);
     cursor: pointer;
-    font-size: 12px;
+    font-size: 13px;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    color: var(--muted);
+    transition: background-color 0.15s;
 }
 
 .request-item:hover {
@@ -54,7 +70,8 @@ body {
 
 .request-item.active {
     background-color: var(--accent);
-    color: white;
+    color: #0f172a;
+    font-weight: 500;
 }
 
 #main-content {
@@ -64,7 +81,7 @@ body {
 }
 
 .code-header {
-    padding: 8px 16px;
+    padding: 12px 16px;
     background-color: var(--bg-side);
     border-bottom: 1px solid var(--border);
     display: flex;
@@ -72,46 +89,61 @@ body {
     align-items: center;
 }
 
+.code-header span {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--muted);
+}
+
 pre {
     flex: 1;
     margin: 0;
-    padding: 16px;
+    padding: 20px;
     overflow: auto;
-    font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+    font-family: 'ui-monospace', 'SFMono-Regular', 'SF Mono', 'Consolas', monospace;
     font-size: 13px;
-    line-height: 1.5;
-    background: #1e1e1e;
+    line-height: 1.6;
+    background: var(--pre-bg);
+    color: var(--text);
 }
+
+/* Scoped styles for theme synchronization will remain here if needed for other components */
 
 button {
     background: var(--accent);
-    color: white;
+    color: #0f172a;
     border: none;
-    padding: 4px 12px;
-    border-radius: 2px;
+    padding: 6px 14px;
+    border-radius: 6px;
     cursor: pointer;
     font-size: 12px;
+    font-weight: 600;
+    transition: all 0.2s;
 }
 
 button:hover {
-    opacity: 0.9;
+    filter: brightness(1.1);
+    transform: translateY(-1px);
 }
 
 button.secondary {
-    background: #444;
+    background: var(--border);
+    color: var(--text);
 }
 
 .status-indicator {
     display: inline-block;
-    width: 8px;
-    height: 8px;
+    width: 10px;
+    height: 10px;
     border-radius: 50%;
     margin-right: 4px;
+    background: var(--muted);
 }
 
 .status-recording {
     background: #f87171;
-    animation: blink 1s infinite;
+    box-shadow: 0 0 8px rgba(248, 113, 113, 0.4);
+    animation: blink 1.5s infinite;
 }
 
 @keyframes blink {
@@ -120,7 +152,7 @@ button.secondary {
     }
 
     50% {
-        opacity: 0.4;
+        opacity: 0.5;
     }
 
     100% {

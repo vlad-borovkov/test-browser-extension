@@ -1,7 +1,7 @@
 export interface AppSettings {
     prefix: string;
     suffix: string;
-    theme: 'light' | 'dark';
+    theme: 'light' | 'dark' | 'auto';
     language: 'ru' | 'en';
 }
 
@@ -15,7 +15,7 @@ export interface FavoriteDTO {
 const DEFAULT_SETTINGS: AppSettings = {
     prefix: '',
     suffix: 'DTO',
-    theme: 'light',
+    theme: 'auto',
     language: 'ru',
 };
 
