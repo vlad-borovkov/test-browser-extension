@@ -64,9 +64,7 @@ export class InterfaceGenerator {
     }
 
     private createInterface(obj: any, name: string, isRoot: boolean): string {
-        const interfaceName = isRoot
-            ? `${this.options.prefix}${toPascalCase(name)}${this.options.suffix}`
-            : toPascalCase(name);
+        const interfaceName = `${this.options.prefix}${toPascalCase(name)}${this.options.suffix}`;
 
         if (this.interfaces.has(interfaceName)) {
             return interfaceName;
@@ -77,7 +75,7 @@ export class InterfaceGenerator {
 
         for (const [key, value] of entries) {
             const fieldType = this.processValue(value, key);
-            content += `  ${key}: ${fieldType};\n`;
+            content += `  ${key}: ${fieldType}\n`;
         }
 
         content += `}`;
