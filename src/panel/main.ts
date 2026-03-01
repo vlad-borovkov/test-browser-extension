@@ -103,16 +103,26 @@ async function selectRequest(item: any, element: HTMLElement) {
     document.querySelectorAll('.request-item').forEach(el => el.classList.remove('active'));
     element.classList.add('active');
 
-    item.request.getContent(async (content: string) => {
+    item.request.getContent(async (content: string, encoding: string) => {
         try {
-            const json = JSON.parse(content);
+            if (!content) {
+                codePreviewEl.textContent = '// Response body is empty';
+                return;
+            }
+
+            let body = content;
+            if (encoding === 'base64') {
+                body = atob(content);
+            }
+
+            const json = JSON.parse(body);
             const settings = await StorageManager.getSettings();
             const tsCode = generateDTO(json, 'Response', settings);
 
-            // Apply code to preview
             codePreviewEl.textContent = tsCode;
         } catch (e) {
-            codePreviewEl.textContent = '// Failed to parse JSON body';
+            console.error('[TypeFastDTO] Selection error:', e);
+            codePreviewEl.textContent = `// Error: ${e instanceof Error ? e.message : 'Failed to parse JSON body'}`;
         }
     });
 }
