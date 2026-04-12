@@ -1,9 +1,9 @@
 // Register the panel in the DevTools
 chrome.devtools.panels.create(
-    "TypeFastDTO",
-    "images/acorn-fill_32.png",
+    "JSON to TypeScript",
+    "images/icon32.png",
     "panel.html",
     (panel) => {
-        console.log("TypeFastDTO panel created", panel);
+        console.log("JSON to TypeScript panel created", panel);
     }
 );

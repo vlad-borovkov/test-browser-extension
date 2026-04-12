@@ -13,7 +13,7 @@ export function toPascalCase(str: string): string {
  */
 export function singularize(str: string): string {
     if (str.endsWith('s') && str.length > 1) {
-        return str.slice(0, -1);
+        return str.slice(0, -1) + 'Item';
     }
     return str;
 }

@@ -1,6 +1,7 @@
 import './style.css';
 import { generateDTO } from '../core/generator';
 import { StorageManager, AppSettings } from '../storage';
+import { highlightTypeScript } from './highlighter';
 
 const requestListEl = document.getElementById('request-list')!;
 const codePreviewEl = document.getElementById('code-preview')!;
@@ -76,7 +77,7 @@ function handleRequest(request: any) {
     const isSuccess = response.status >= 200 && response.status < 300;
 
     // Debug logging for user
-    console.log(`[TypeFastDTO] Intercepted: ${request.request.method} ${request.request.url} | Status: ${response.status} | MIME: ${mimeType}`);
+    console.log(`[JSON to TypeScript] Intercepted: ${request.request.method} ${request.request.url} | Status: ${response.status} | MIME: ${mimeType}`);
 
     if (isJson && isSuccess) {
         const item = {
@@ -119,9 +120,9 @@ async function selectRequest(item: any, element: HTMLElement) {
             const settings = await StorageManager.getSettings();
             const tsCode = generateDTO(json, 'Response', settings);
 
-            codePreviewEl.textContent = tsCode;
+            codePreviewEl.innerHTML = highlightTypeScript(tsCode);
         } catch (e) {
-            console.error('[TypeFastDTO] Selection error:', e);
+            console.error('[JSON to TypeScript] Selection error:', e);
             codePreviewEl.textContent = `// Error: ${e instanceof Error ? e.message : 'Failed to parse JSON body'}`;
         }
     });

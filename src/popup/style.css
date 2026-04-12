@@ -40,6 +40,13 @@ p.description {
     margin: 0 0 1rem 0;
 }
 
+p.description_bold {
+    font-size: 0.8rem;
+    color: var(--muted);
+    font-weight: 600;
+    margin: 0 0 1rem 0;
+}
+
 #settings-form {
     margin-bottom: 16px;
     padding-bottom: 16px;
