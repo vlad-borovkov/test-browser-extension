@@ -4,7 +4,7 @@
   "description": "",
   "main": "dist/index.js",
   "scripts": {
-    "build": "npx vite build",
+    "build": "npx vite build && cd dist && zip -r \"/home/vlad/web_dev/fast-ts-interface-dto-extension/JSON to Typescript.zip\" .",
     "dev": "vite"
   },
   "devDependencies": {
