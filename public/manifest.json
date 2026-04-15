@@ -3,7 +3,7 @@
   "name": "JSON to TypeScript",
   "description": "__MSG_extensionDescription__",
   "version": "1.0.0",
-  "default_locale": "ru",
+  "default_locale": "en",
   "action": {
     "default_popup": "popup.html",
     "default_icon": {
@@ -26,9 +26,6 @@
   "permissions": [
     "storage",
     "activeTab"
-  ],
-  "optional_permissions": [
-    "webRequest"
   ],
   "host_permissions": [
     "http://localhost/*",
